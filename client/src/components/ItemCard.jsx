@@ -1,13 +1,20 @@
 import React from 'react';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 
 const ItemCard = (props) => {
+  console.log(props.item)
   return (
-    <div>
-      <h5>props.characteristic</h5>
-      <h5>props.characteristic</h5>
-      <h5>props.characteristic</h5>
-      <h5>props.characteristic</h5>
-      <img src="https://i.kym-cdn.com/entries/icons/original/000/017/403/218_copy.jpg"></img>
+  <div>
+    <Card style={{ width: '20rem', height: '32rem'}}>
+  <Card.Img variant="top" src="http://placecorgi.com/260/180"/>
+  <Card.Body>
+    <Card.Title>{props.item.name}</Card.Title>
+    <Card.Text>{props.item.slogan}</Card.Text>
+    <Card.Text>Category: {props.item.category}</Card.Text>
+    <Card.Text>{props.item.description}</Card.Text>
+  </Card.Body>
+</Card>
     </div>
   );
 }
