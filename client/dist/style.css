@@ -1,0 +1,53 @@
+.related-products {
+  display: flex;
+  flex-direction: row;
+  width: 50px;
+  padding-left: 30px;
+}
+
+.your-outfit {
+  display: flex;
+  flex-direction: row;
+  width: 50px;
+  padding-left: 400px;
+}
+
+.item-card {
+  height: 400px;
+}
+
+.items-title {
+  font-family: courier;
+  flex-direction: column;
+  text-align: left;
+  width: 200%;
+  padding-left: 30px;
+}
+
+.outfit-title {
+  font-family: courier;
+  flex-direction: column;
+  text-align: left;
+  width: 200%;
+  padding-left: 400px;
+}
+
+
+.card-body {
+  background-color: black;
+  color: white;
+  overflow-y: scroll;
+}
+
+
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(228, 225, 225, 0.5);
+  box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}

@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import bodyParser from 'body-parser';
-import RelatedItems from './RelatedItems.jsx';
+import RelatedProducts from './RelatedProducts.jsx';
 import ReactBootstrap from 'react-bootstrap';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Jumbotron from 'react-bootstrap/Jumbotron';
+import Row from 'react-bootstrap/Row';
 import Toast from 'react-bootstrap/Toast';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
@@ -23,8 +23,22 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>Related Items
-        <RelatedItems itemList={this.state.itemList} />
+      <div>
+        <Row>
+
+        <div>
+          <h1 className="items-title">&nbsp;&nbsp; Related Items</h1>
+          <div className="related-products">
+            <RelatedProducts itemList={this.state.itemList} />
+          </div>
+        </div>
+        <div>
+          <h1 className="outfit-title">&nbsp;&nbsp;&nbsp; Your Outfit</h1>
+          <div className="your-outfit">
+            <RelatedProducts itemList={this.state.itemList} />
+          </div>
+        </div>
+        </Row>
       </div>
 
     );
