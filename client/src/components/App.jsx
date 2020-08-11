@@ -4,6 +4,10 @@ import axios from 'axios';
 import bodyParser from 'body-parser';
 import RelatedProducts from './RelatedProducts.jsx';
 import ReactBootstrap from 'react-bootstrap';
+import Modal from "./Modal.jsx";
+import YourOutfit from "./YourOutfit.jsx";
+
+
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Row from 'react-bootstrap/Row';
@@ -16,29 +20,48 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      itemList: []
+      itemList: [],
+      showOne: false,
+      showTwo: false
     }
+    this.showModalOne = this.showModalOne.bind(this);
+    this.showModalTwo = this.showModalTwo.bind(this);
   }
 
+  showModalOne(e) {
+    this.setState({
+      showOne: !this.state.showOne
+    });
+  };
+
+  showModalTwo(e) {
+    this.setState({
+      showTwo: !this.state.showTwo
+    });
+  };
 
   render() {
     return (
       <div>
         <Row>
 
-        <div>
-          <h1 className="items-title">&nbsp;&nbsp; Related Items</h1>
-          <div className="related-products">
-            <RelatedProducts itemList={this.state.itemList} />
+          <div>
+            <h1 className="items-title">&nbsp;&nbsp; Related Items</h1>
+            <div className="related-products">
+              <RelatedProducts show={this.state.showOne} onClick={this.showModalOne} itemList={this.state.itemList} />
+            </div>
           </div>
-        </div>
-        <div>
-          <h1 className="outfit-title">&nbsp;&nbsp;&nbsp; Your Outfit</h1>
-          <div className="your-outfit">
-            <RelatedProducts itemList={this.state.itemList} />
+          <div>
+            <h1 className="outfit-title" >&nbsp;&nbsp;&nbsp; Your Outfit</h1>
+            <div className="your-outfit" >
+              <YourOutfit show={this.state.showTwo} onClick={this.showModalTwo} itemList={this.state.itemList} />
+            </div>
           </div>
-        </div>
         </Row>
+
+        <div>
+
+        </div>
       </div>
 
     );

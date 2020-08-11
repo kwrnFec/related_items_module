@@ -1,3 +1,5 @@
+/* ||||||||||||||||||||||||||||||||||||| Main Modules ||||||||||||||||||||||||||||||||||||| */
+
 .related-products {
   display: flex;
   flex-direction: row;
@@ -12,26 +14,22 @@
   padding-left: 400px;
 }
 
-.item-card {
-  height: 400px;
-}
-
 .items-title {
-  font-family: courier;
   flex-direction: column;
   text-align: left;
-  width: 200%;
-  padding-left: 30px;
+  padding-left: 110px;
 }
 
 .outfit-title {
-  font-family: courier;
   flex-direction: column;
   text-align: left;
-  width: 200%;
-  padding-left: 400px;
+  padding-left: 500px;
 }
 
+.card-title {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: xx-large;
+}
 
 .card-body {
   background-color: black;
@@ -39,15 +37,21 @@
   overflow-y: scroll;
 }
 
+#modal {
+  height: 100px;
+  width: 100px;
+  background-color: aqua;
+}
 
+/* ||||||||||||||||||||||||||||||||||||| Scroll Bar ||||||||||||||||||||||||||||||||||||| */
 
 ::-webkit-scrollbar {
   -webkit-appearance: none;
-  width: 7px;
+  width: 15px;
 }
 
 ::-webkit-scrollbar-thumb {
-  border-radius: 4px;
+  border-radius: 10px;
   background-color: rgba(228, 225, 225, 0.5);
   box-shadow: 0 0 1px rgba(255, 255, 255, .5);
 }
