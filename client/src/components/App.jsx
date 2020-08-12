@@ -6,10 +6,6 @@ import RelatedProducts from './RelatedProducts.jsx';
 import ReactBootstrap from 'react-bootstrap';
 import Modal from "./Modal.jsx";
 import YourOutfit from "./YourOutfit.jsx";
-
-
-// import 'bootstrap/dist/css/bootstrap.min.css';
-
 import Row from 'react-bootstrap/Row';
 import Toast from 'react-bootstrap/Toast';
 import Container from 'react-bootstrap/Container';
@@ -22,12 +18,15 @@ class App extends React.Component {
     this.state = {
       itemList: [],
       outfitList: [],
-      outfitTitle: 'Add Item'
+      outfitTitle: 'Add Item',
+      currentPhoto: '',
+      photoList: []
     }
     this.emptyClick = this.emptyClick.bind(this);
   }
 
   emptyClick() {
+
     this.setState({ outfitList: this.state.itemList, outfitTitle: 'Your Outfit' })
   }
 
@@ -39,13 +38,13 @@ class App extends React.Component {
           <div>
             <h1 className="items-title">&nbsp;&nbsp; Related Items</h1>
             <div className="related-products">
-              <RelatedProducts show={this.state.showOne} onClick={this.showModalOne} itemList={this.state.itemList} />
+              <RelatedProducts imageList={this.state.photoList} itemList={this.state.itemList} />
             </div>
           </div>
           <div>
             <h1 className="outfit-title" >&nbsp;&nbsp;&nbsp; {this.state.outfitTitle}</h1>
             <div className="your-outfit" >
-              <YourOutfit emptyClick={this.emptyClick} itemList={this.state.outfitList} />
+              <YourOutfit imageList={this.state.photoList} emptyClick={this.emptyClick} itemList={this.state.outfitList} />
             </div>
           </div>
         </Row>
@@ -73,6 +72,15 @@ class App extends React.Component {
       })
       .catch((err) => {
         console.log(err);
+      })
+    axios.get('/styles')
+      .then((response) => {
+        response.data.results.map((style) => {
+          this.state.photoList.push(style.photos[0].url)
+        })
+        this.setState({
+          currentPhoto: response.data.results[0].photos[0].url
+        })
       })
   }
 

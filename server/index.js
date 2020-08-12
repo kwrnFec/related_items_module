@@ -19,31 +19,42 @@ let productOptions = {
 };
 
 let cartOptions = {
-  url: `http://18.224.200.47/cart/1010220`,
+  url: `http://18.224.200.47/cart/13`,
   headers: {
     'User-Agent': 'request',
   }
 };
 
-app.get('/cart', function(req, res) {
+let styleOptions = {
+  url: `http://18.224.200.47/products/1/styles`,
+  headers: {
+    'User-Agent': 'request',
+  }
+};
 
-  axios.get(cartOptions.url)
+
+app.get('/styles', function(req, res) {
+  axios.get(styleOptions.url)
   .then((response) => {
     console.log(response.data);
     res.json(response.data);
   })
+})
 
 
+app.get('/cart', function(req, res) {
+  axios.get(cartOptions.url)
+  .then((response) => {
+    res.json(response.data);
+  })
 })
 
 
 app.get('/data', function (req, res) {
   axios.get(productOptions.url)
   .then((response) => {
-    console.log(response.data);
     res.json(response.data);
   })
-
 })
 
 app.listen(port, () => {

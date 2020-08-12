@@ -16,7 +16,7 @@ const YourOutfit = (props) => {
             {props.itemList.map((product) => {
               return (
                 <Carousel.Item>
-                  <ItemCard onClick={props.onClick} item={product} />
+                  <ItemCard image={props.imageList[product.id - 1]} onClick={props.onClick} item={product} />
                 </Carousel.Item>
               );
             })}

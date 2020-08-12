@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Carousel from 'react-bootstrap/Carousel';
 import ReactBootstrap from 'react-bootstrap';
 import Modal from "./Modal.jsx";
+import axios from 'axios';
 
 const MyCarousel = (props) => {
   if (props.itemList.length > 0) {
@@ -15,7 +16,7 @@ const MyCarousel = (props) => {
                 {props.itemList.map((product) => {
                   return (
                     <Carousel.Item>
-                  <ItemCard onClick={props.onClick} item={product}/>
+                  <ItemCard image={props.imageList[product.id - 1]} onClick={props.onClick} item={product}/>
                  </Carousel.Item>
                     )
                 })}
