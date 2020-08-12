@@ -1,5 +1,12 @@
 /* ||||||||||||||||||||||||||||||||||||| Main Modules ||||||||||||||||||||||||||||||||||||| */
 
+.fullApp {
+-webkit-transform:scale(0.83);
+-moz-transform:scale(0.83);
+-ms-transform:scale(0.83);
+transform:scale(0.83);
+}
+
 .related-products {
   display: flex;
   flex-direction: row;

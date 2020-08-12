@@ -7,7 +7,7 @@ import Modal from "./Modal.jsx";
 const ItemCard = (props) => {
   return (
     <div className="item-card">
-      <Card style={{ width: '27rem', height: '70rem' }}>
+      <Card style={{ width: '28rem', height: '68rem' }}>
         <Card.Img variant="top" src={props.image} />
         <Card.Body className="card-body" >
           <Card.Title className ="card-title">{props.item.name}</Card.Title>

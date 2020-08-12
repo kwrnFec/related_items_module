@@ -36,7 +36,7 @@ let styleOptions = {
 app.get('/styles', function(req, res) {
   axios.get(styleOptions.url)
   .then((response) => {
-    console.log(response.data);
+    console.log(response.data.results);
     res.json(response.data);
   })
 })
