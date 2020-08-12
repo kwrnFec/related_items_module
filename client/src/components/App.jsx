@@ -21,24 +21,15 @@ class App extends React.Component {
     super();
     this.state = {
       itemList: [],
-      showOne: false,
-      showTwo: false
+      outfitList: [],
+      outfitTitle: 'Add Item'
     }
-    this.showModalOne = this.showModalOne.bind(this);
-    this.showModalTwo = this.showModalTwo.bind(this);
+    this.emptyClick = this.emptyClick.bind(this);
   }
 
-  showModalOne(e) {
-    this.setState({
-      showOne: !this.state.showOne
-    });
-  };
-
-  showModalTwo(e) {
-    this.setState({
-      showTwo: !this.state.showTwo
-    });
-  };
+  emptyClick() {
+    this.setState({ outfitList: this.state.itemList, outfitTitle: 'Your Outfit' })
+  }
 
   render() {
     return (
@@ -52,9 +43,9 @@ class App extends React.Component {
             </div>
           </div>
           <div>
-            <h1 className="outfit-title" >&nbsp;&nbsp;&nbsp; Your Outfit</h1>
+            <h1 className="outfit-title" >&nbsp;&nbsp;&nbsp; {this.state.outfitTitle}</h1>
             <div className="your-outfit" >
-              <YourOutfit show={this.state.showTwo} onClick={this.showModalTwo} itemList={this.state.itemList} />
+              <YourOutfit emptyClick={this.emptyClick} itemList={this.state.outfitList} />
             </div>
           </div>
         </Row>
@@ -69,10 +60,16 @@ class App extends React.Component {
 
 
   componentDidMount() {
-    // doesn't limit length yet
     axios.get('/data')
       .then((response) => {
         this.setState({ itemList: response.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    axios.get('/cart')
+      .then((response) => {
+        this.setState({ outfitList: response.data });
       })
       .catch((err) => {
         console.log(err);
@@ -81,32 +78,3 @@ class App extends React.Component {
 
 }
 export default App;
-
-{/* <RelatedItems itemList={this.state.itemList} />
-        <Container className="p-3">
-          <Jumbotron>
-            <h1 className="header">Welcome To React-Bootstrap</h1>
-            <ExampleToast>
-              We now have Toasts
-        <span role="img" aria-label="tada">
-                🎉
-        </span>
-            </ExampleToast>
-          </Jumbotron>
-        </Container> */}
-
-// const ExampleToast = ({ children }) => {
-//   const [show, toggleShow] = useState(true);
-
-//   return (
-//     <>
-//       {!show && <Button onClick={() => toggleShow(true)}>Show Toast</Button>}
-//       <Toast show={show} onClose={() => toggleShow(false)}>
-//         <Toast.Header>
-//           <strong className="mr-auto">React-Bootstrap</strong>
-//         </Toast.Header>
-//         <Toast.Body>{children}</Toast.Body>
-//       </Toast>
-//     </>
-//   );
-// };

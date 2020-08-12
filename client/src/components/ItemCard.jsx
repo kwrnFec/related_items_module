@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import Modal from "./Modal.jsx";
+
 
 const ItemCard = (props) => {
-  console.log(props.item)
   return (
     <div className="item-card">
-      <Card style={{ width: '27rem', height: '40rem' }}>
-        <Card.Img onClick={props.onClick}
-        variant="top" src="http://placecorgi.com/400/220" />
+      <Card style={{ width: '27rem', height: '42rem' }}>
+        <Card.Img variant="top" src="http://placecorgi.com/400/220" />
         <Card.Body className="card-body" >
           <Card.Title className ="card-title">{props.item.name}</Card.Title>
           <Card.Text>&nbsp;</Card.Text>
@@ -16,6 +16,9 @@ const ItemCard = (props) => {
           <Card.Text>Category: {props.item.category}</Card.Text>
           <Card.Text>${props.item.default_price}</Card.Text>
           <Card.Text>{props.item.description}</Card.Text>
+            <Modal onClose={props.onClick} show={props.show} item={props.item}>
+              Message in Modal
+          </Modal>
         </Card.Body>
       </Card>
     </div>

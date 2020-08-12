@@ -6,7 +6,6 @@ import Carousel from 'react-bootstrap/Carousel';
 import ReactBootstrap from 'react-bootstrap';
 import Modal from "./Modal.jsx";
 
-
 const MyCarousel = (props) => {
   if (props.itemList.length > 0) {
       return (
@@ -22,15 +21,8 @@ const MyCarousel = (props) => {
                 })}
               </Carousel>
             </Container>
-            <div>
-            <Modal onClose={props.onClick} show={props.show} >
-              Message in Modal
-          </Modal>
-          </div>
         </div>
-
       )
-    // })
   } else {
     return <div>Hello From The Boot Screen!</div>
   }

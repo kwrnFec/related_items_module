@@ -23,7 +23,7 @@
 .outfit-title {
   flex-direction: column;
   text-align: left;
-  padding-left: 500px;
+  padding-left: 499px;
 }
 
 .card-title {
@@ -41,6 +41,38 @@
   height: 100px;
   width: 100px;
   background-color: aqua;
+}
+
+#modal-button {
+  margin-left: 5px;
+}
+
+#contained-modal-title-vcenter {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.char-row {
+  border: 1px solid black;
+}
+
+.char-col {
+  border: 1px solid black;
+}
+
+.outfit-card-title {
+  text-align: center;
+}
+
+.add-to-outfit {
+  display: flex;
+  margin: 0 auto;
+  border: 5px solid gray;
+}
+
+.plus-sign {
+  padding-left: 14px;
+  text-align: center;
+  font-size: 125px;
 }
 
 /* ||||||||||||||||||||||||||||||||||||| Scroll Bar ||||||||||||||||||||||||||||||||||||| */

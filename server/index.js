@@ -11,23 +11,34 @@ app.get('/', (req, res) => {
   res.end();
 })
 
-let options = {
-  url: `http://18.224.200.47/products/list`,
+let productOptions = {
+  url: `http://18.224.200.47/products/list/`,
   headers: {
     'User-Agent': 'request',
   }
 };
-app.get(options, (err, response)=>{
-  if(err){
-    res.send(err);
-  } else {
-    res.send(response);
+
+let cartOptions = {
+  url: `http://18.224.200.47/cart/1010220`,
+  headers: {
+    'User-Agent': 'request',
   }
+};
+
+app.get('/cart', function(req, res) {
+
+  axios.get(cartOptions.url)
+  .then((response) => {
+    console.log(response.data);
+    res.json(response.data);
+  })
+
+
 })
 
-app.get('/data', function (req, res) {
 
-  axios.get(options.url)
+app.get('/data', function (req, res) {
+  axios.get(productOptions.url)
   .then((response) => {
     console.log(response.data);
     res.json(response.data);
