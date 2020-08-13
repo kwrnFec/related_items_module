@@ -1,6 +1,6 @@
-import React from 'react';
-import App from '../client/src/components/App';
+// import React from 'react';
+// import App from '../client/src/components/App';
 
-import { configure, shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-configure({ adapter: new Adapter() });
+// import { configure, shallow } from 'enzyme';
+// import Adapter from 'enzyme-adapter-react-16';
+// configure({ adapter: new Adapter() });

@@ -1,11 +1,13 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
-import ReactBootstrap from 'react-bootstrap';
+import 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-
 
 function MyModalWithGrid(props) {
   if (props.item !== undefined) {
@@ -13,45 +15,46 @@ function MyModalWithGrid(props) {
       <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            {props.item.name} and Some Other Thing
-        </Modal.Title>
+            {props.item.name}
+            &nbsp;and Some Other Thing
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body className="show-grid">
           <Container className="char-container">
             <Row className="char-row">
               <Col className="char-col" xs={6} md={4}>
                 Characteristic One
-            </Col>
+              </Col>
               <Col className="char-col" xs={6} md={4}>
                 Current Value One
-            </Col>
-            <Col className="char-col" xs={6} md={4}>
+              </Col>
+              <Col className="char-col" xs={6} md={4}>
                 Compared Value One
-            </Col>
+              </Col>
             </Row>
 
             <Row className="char-row">
               <Col className="char-col" xs={6} md={4}>
                 Characteristic Two
-            </Col>
+              </Col>
               <Col className="char-col" xs={6} md={4}>
                 Current Value Two
-            </Col>
-            <Col className="char-col" xs={6} md={4}>
+              </Col>
+              <Col className="char-col" xs={6} md={4}>
                 Compared Value Two
-            </Col>
+              </Col>
             </Row>
 
             <Row className="char-row">
               <Col className="char-col" xs={6} md={4}>
                 Characteristic Three
-            </Col>
+              </Col>
               <Col className="char-col" xs={6} md={4}>
                 Current Value Three
-            </Col>
-            <Col className="char-col" xs={6} md={4}>
+              </Col>
+              <Col className="char-col" xs={6} md={4}>
                 Compared Value Three
-            </Col>
+              </Col>
             </Row>
 
           </Container>
@@ -61,44 +64,43 @@ function MyModalWithGrid(props) {
         </Modal.Footer>
       </Modal>
     );
-  } else {
-    return (
-      <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Hello
-        </Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="show-grid">
-          <Container>
-            <Row>
-              <Col xs={6} md={4}>
-                .col-xs-12 .col-md-8
-            </Col>
-              <Col xs={6} md={4}>
-                .col-xs-6 .col-md-4
-            </Col>
-            </Row>
-
-            <Row>
-              <Col xs={6} md={4}>
-                .col-xs-6 .col-md-4
-            </Col>
-              <Col xs={6} md={4}>
-                .col-xs-6 .col-md-4
-            </Col>
-              <Col xs={6} md={4}>
-                .col-xs-6 .col-md-4
-            </Col>
-            </Row>
-          </Container>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="outline-dark" onClick={props.onHide}>Close</Button>
-        </Modal.Footer>
-      </Modal>
-    )
   }
+  return (
+    <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          Hello
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body className="show-grid">
+        <Container>
+          <Row>
+            <Col xs={6} md={4}>
+              .col-xs-12 .col-md-8
+            </Col>
+            <Col xs={6} md={4}>
+              .col-xs-6 .col-md-4
+            </Col>
+          </Row>
+
+          <Row>
+            <Col xs={6} md={4}>
+              .col-xs-6 .col-md-4
+            </Col>
+            <Col xs={6} md={4}>
+              .col-xs-6 .col-md-4
+            </Col>
+            <Col xs={6} md={4}>
+              .col-xs-6 .col-md-4
+            </Col>
+          </Row>
+        </Container>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="outline-dark" onClick={props.onHide}>Close</Button>
+      </Modal.Footer>
+    </Modal>
+  );
 }
 
 function DummyApp(props) {

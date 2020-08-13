@@ -23,14 +23,19 @@ transform:scale(0.83);
 
 .items-title {
   flex-direction: column;
-  text-align: left;
-  padding-left: 110px;
+  text-align: center;
+  padding-left: 125px;
 }
 
 .outfit-title {
   flex-direction: column;
-  text-align: left;
-  padding-left: 499px;
+  text-align: center;
+  padding-left: 510px;
+}
+
+.item-card {
+  border: solid 1px black;
+  background-color: black;
 }
 
 .card-title {
@@ -42,6 +47,29 @@ transform:scale(0.83);
   background-color: black;
   color: white;
   overflow-y: scroll;
+}
+
+#delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+}
+
+.delete-field {
+  flex-direction: row;
+  background-color: black;
+  color: white;
+  text-align: center;
+  font-size: 40px;
+}
+
+.delete-button {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 40px;
+  text-align: center;
+  border: solid 1px white;
+  padding-bottom: 8px;
 }
 
 #modal {
