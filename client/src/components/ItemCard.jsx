@@ -21,7 +21,7 @@ function ItemCard(props) {
         <Card.Img variant="top" src={props.image} />
         <Card.Body className="card-body">
           <Card.Title className="card-title">{props.item.name}</Card.Title>
-          <Card.Text>&nbsp;</Card.Text>
+          <Card.Text className="star-rating">&nbsp;Star Rating Placeholder</Card.Text>
           <Card.Text>{props.item.slogan}</Card.Text>
           <Card.Text>
             Category:
@@ -32,9 +32,12 @@ function ItemCard(props) {
             {props.item.default_price}
           </Card.Text>
           <Card.Text>{props.item.description}</Card.Text>
-          <Modal onClose={props.onClick} show={props.show} item={props.item}>
-            Message in Modal
-          </Modal>
+          <Modal
+            currentItem={props.currentItem}
+            onClose={props.onClick}
+            show={props.show}
+            item={props.item}
+          />
         </Card.Body>
       </Card>
     </div>

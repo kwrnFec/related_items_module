@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/jsx-props-no-spreading */
@@ -10,53 +11,96 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 
 function MyModalWithGrid(props) {
-  if (props.item !== undefined) {
+  if (props.currentitem !== undefined) {
+    const featureObj = {
+      butter: 'scotch',
+      butter1: 'scotch',
+      butter2: 'scotch',
+      butter3: 'scotch',
+      butter4: 'scotch',
+      butter5: 'scotch',
+      butter6: 'scotch',
+      butter7: 'scotch',
+      butter8: 'scotch',
+      butter9: 'scotch',
+      butter0: 'scotch',
+      butter10: 'scotch',
+      butter11: 'scotch',
+      butter12: 'scotch',
+      butter13: 'scotch',
+      butter14: 'scotch',
+      butter15: 'scotch',
+      butter16: 'scotch',
+    };
+    for (let i = 0; i < props.currentitem.features.length; i += 1) {
+      if (props.currentitem.features[i].value === 'null') {
+        props.currentitem.features[i].value = 'No';
+      } else {
+        featureObj[props.currentitem.features[i].feature] = [props.currentitem.features[i].value];
+      }
+    }
+    for (let i = 0; i < props.item.features.length; i += 1) {
+      if (props.item.features[i].value === 'null') {
+        props.item.features[i].value = 'No';
+      } else if (featureObj[props.item.features[i].feature] === undefined) {
+        featureObj[props.item.features[i].feature] = ['N/A', props.item.features[i].value];
+      } else {
+        featureObj[props.item.features[i].feature].push(props.item.features[i].value);
+      }
+    }
+
     return (
       <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            {props.item.name}
-            &nbsp;and Some Other Thing
+            <div className="modal-item-title">
+              {props.currentitem.name}
+            </div>
+            &nbsp;and&nbsp;
+            <div className="modal-item-title">
+              {props.item.name}
+            </div>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className="show-grid">
-          <Container className="char-container">
-            <Row className="char-row">
-              <Col className="char-col" xs={6} md={4}>
-                Characteristic One
+          <Container>
+            <Row id="full-modal-body" className="char-row">
+              <Col id="modal-feature" className="char-col" xs={6} md={4}>
+                Name
               </Col>
               <Col className="char-col" xs={6} md={4}>
-                Current Value One
+                {props.currentitem.name}
               </Col>
               <Col className="char-col" xs={6} md={4}>
-                Compared Value One
-              </Col>
-            </Row>
-
-            <Row className="char-row">
-              <Col className="char-col" xs={6} md={4}>
-                Characteristic Two
-              </Col>
-              <Col className="char-col" xs={6} md={4}>
-                Current Value Two
-              </Col>
-              <Col className="char-col" xs={6} md={4}>
-                Compared Value Two
+                {props.item.name}
               </Col>
             </Row>
-
             <Row className="char-row">
-              <Col className="char-col" xs={6} md={4}>
-                Characteristic Three
+              <Col id="modal-feature" className="char-col" xs={6} md={4}>
+                Price
               </Col>
               <Col className="char-col" xs={6} md={4}>
-                Current Value Three
+                $
+                {props.currentitem.default_price}
               </Col>
               <Col className="char-col" xs={6} md={4}>
-                Compared Value Three
+                $
+                {props.item.default_price}
               </Col>
             </Row>
-
+            {Object.keys(featureObj).map((key) => (
+              <Row className="char-row">
+                <Col id="modal-feature" className="char-col" xs={6} md={4}>
+                  {key}
+                </Col>
+                <Col className="char-col" xs={6} md={4}>
+                  {featureObj[key][0] || 'N/A'}
+                </Col>
+                <Col className="char-col" xs={6} md={4}>
+                  {featureObj[key][1] || 'N/A'}
+                </Col>
+              </Row>
+            ))}
           </Container>
         </Modal.Body>
         <Modal.Footer>
@@ -103,7 +147,7 @@ function MyModalWithGrid(props) {
   );
 }
 
-function DummyApp(props) {
+function MyModal(props) {
   const [modalShow, setModalShow] = useState(false);
 
   return (
@@ -112,9 +156,14 @@ function DummyApp(props) {
         Compare Items
       </Button>
 
-      <MyModalWithGrid show={modalShow} item={props.item} onHide={() => setModalShow(false)} />
+      <MyModalWithGrid
+        currentitem={props.currentItem}
+        show={modalShow}
+        item={props.item}
+        onHide={() => setModalShow(false)}
+      />
     </>
   );
 }
 
-export default DummyApp;
+export default MyModal;

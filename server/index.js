@@ -18,7 +18,7 @@ const productOptions = {
   },
 };
 
-const oneProductOptions = {
+const oneProductRelationOptions = {
   url: 'http://18.224.200.47/products/1/related',
   headers: {
     'User-Agent': 'request',
@@ -34,13 +34,6 @@ const cartOptions = {
 
 const styleOptions = {
   url: 'http://18.224.200.47/products/1/styles',
-  headers: {
-    'User-Agent': 'request',
-  },
-};
-
-const relationOptions = {
-  url: 'http://18.224.200.47/products/:product_id/styles',
   headers: {
     'User-Agent': 'request',
   },
@@ -67,15 +60,8 @@ app.get('/styles', (req, res) => {
     });
 });
 
-app.get('/allRelationImages/:product_id', (req, res) => {
-  axios.get(relationOptions.url)
-    .then((response) => {
-      res.json(response.data);
-    });
-});
-
 app.get('/oneProductRelation', (req, res) => {
-  axios.get(oneProductOptions.url)
+  axios.get(oneProductRelationOptions.url)
     .then((response) => {
       res.json(response.data);
     });

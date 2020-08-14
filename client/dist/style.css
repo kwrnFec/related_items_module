@@ -7,6 +7,10 @@
 transform:scale(0.83);
 }
 
+.empty-card {
+  padding-top: 57px;
+}
+
 .related-products {
   display: flex;
   flex-direction: row;
@@ -25,13 +29,41 @@ transform:scale(0.83);
   flex-direction: column;
   text-align: center;
   padding-left: 125px;
+  padding-bottom: 58px;
 }
 
 .outfit-title {
   flex-direction: column;
   text-align: center;
-  padding-left: 510px;
+  padding-left: 500px;
 }
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 100px;
+  width: 100px;
+  outline: black;
+  background-size: 100%, 100%;
+  background-image: none;
+  opacity: 100%;
+}
+
+.carousel-control-next-icon:after
+{
+  content: '>';
+  font-size: 55px;
+  color: white;
+}
+
+.carousel-control-prev-icon:after {
+  content: '<';
+  font-size: 55px;
+  color: white;
+}
+.star-rating {
+  border: solid 1px red;
+}
+
 
 .item-card {
   border: solid 1px black;
@@ -49,11 +81,20 @@ transform:scale(0.83);
   overflow-y: scroll;
 }
 
+#add-to-outfit-button {
+  margin-top: 20px;
+  margin-left: 105px;
+}
+
 #delete {
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: black;
+}
+
+#modal-feature {
+  font-weight: bold;
 }
 
 .delete-field {
@@ -69,7 +110,21 @@ transform:scale(0.83);
   font-size: 40px;
   text-align: center;
   border: solid 1px white;
+  border-radius: 20px;
   padding-bottom: 8px;
+}
+
+.delete-button:hover {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 28px;
+  text-align: center;
+  border: solid 1px red;
+  border-radius: 100px;
+  padding-bottom: 5px;
+}
+
+#full-modal-body {
+  overflow: visible;
 }
 
 #modal {
@@ -108,6 +163,20 @@ transform:scale(0.83);
   padding-left: 14px;
   text-align: center;
   font-size: 125px;
+}
+
+.modal-item-title {
+  font-weight: bold;
+}
+
+#contained-modal-title-vcenter {
+  background-color: black;
+  color: white;
+  padding: 15px;
+  border: solid 1px white;
+  align-items: center;
+  text-align: center;
+  border-radius: 20%;
 }
 
 /* ||||||||||||||||||||||||||||||||||||| Scroll Bar ||||||||||||||||||||||||||||||||||||| */

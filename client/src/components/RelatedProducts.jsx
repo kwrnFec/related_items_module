@@ -17,9 +17,10 @@ const MyCarousel = (props) => {
               <Carousel.Item>
                 <ItemCard
                   deleteClick={props.deleteClick}
-                  image={props.imageList[product.id - 1]}
+                  image={product.photo}
                   onClick={props.onClick}
                   item={product}
+                  currentItem={props.currentItem}
                 />
               </Carousel.Item>
             ))}
