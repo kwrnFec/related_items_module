@@ -1,9 +1,13 @@
 /* eslint-disable no-console */
 const express = require('express');
+const axios = require('axios');
+const bodyParser = require('body-parser');
+const Product = require('../database.js');
 
 const app = express();
 const port = 3000;
-const axios = require('axios');
+
+const jsonParser = bodyParser.json();
 
 app.use(express.static('client/dist'));
 
@@ -25,13 +29,6 @@ const oneProductRelationOptions = {
   },
 };
 
-const cartOptions = {
-  url: 'http://18.224.200.47/cart/13',
-  headers: {
-    'User-Agent': 'request',
-  },
-};
-
 const styleOptions = {
   url: 'http://18.224.200.47/products/1/styles',
   headers: {
@@ -40,10 +37,19 @@ const styleOptions = {
 };
 
 app.get('/cart', (req, res) => {
-  axios.get(cartOptions.url)
-    .then((response) => {
-      res.json(response.data);
+  Product.find({}).exec()
+    .then((data) => {
+      res.send(data);
     });
+});
+
+app.post('/cart', jsonParser, (req, res) => {
+  Product.create(req.body.data, (err) => {
+    if (err) return err;
+    res.send(req.body.data);
+    return console.log(Product);
+    // saved!
+  });
 });
 
 app.get('/data', (req, res) => {

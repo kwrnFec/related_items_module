@@ -12,26 +12,47 @@ import Button from 'react-bootstrap/Button';
 
 function MyModalWithGrid(props) {
   if (props.currentitem !== undefined) {
-    const featureObj = {
-      butter: 'scotch',
-      butter1: 'scotch',
-      butter2: 'scotch',
-      butter3: 'scotch',
-      butter4: 'scotch',
-      butter5: 'scotch',
-      butter6: 'scotch',
-      butter7: 'scotch',
-      butter8: 'scotch',
-      butter9: 'scotch',
-      butter0: 'scotch',
-      butter10: 'scotch',
-      butter11: 'scotch',
-      butter12: 'scotch',
-      butter13: 'scotch',
-      butter14: 'scotch',
-      butter15: 'scotch',
-      butter16: 'scotch',
-    };
+    const dummyObj = props.currentitem;
+    const keyCount = Object.keys(dummyObj);
+    const featureObj = {};
+    if (keyCount < 1) {
+      return (
+        <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
+          <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title-vcenter">
+              Hello
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body className="show-grid">
+            <Container>
+              <Row>
+                <Col xs={6} md={4}>
+                  .col-xs-12 .col-md-8
+                </Col>
+                <Col xs={6} md={4}>
+                  .col-xs-6 .col-md-4
+                </Col>
+              </Row>
+
+              <Row>
+                <Col xs={6} md={4}>
+                  .col-xs-6 .col-md-4
+                </Col>
+                <Col xs={6} md={4}>
+                  .col-xs-6 .col-md-4
+                </Col>
+                <Col xs={6} md={4}>
+                  .col-xs-6 .col-md-4
+                </Col>
+              </Row>
+            </Container>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="outline-dark" onClick={props.onHide}>Close</Button>
+          </Modal.Footer>
+        </Modal>
+      );
+    }
     for (let i = 0; i < props.currentitem.features.length; i += 1) {
       if (props.currentitem.features[i].value === 'null') {
         props.currentitem.features[i].value = 'No';

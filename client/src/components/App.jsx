@@ -33,6 +33,7 @@ class App extends React.Component {
     axios.get('/cart')
       .then((response) => {
         this.setState({ outfitList: response.data });
+        console.log(this.state.outfitList);
       })
       .catch((err) => {
         console.log(err);
@@ -69,18 +70,25 @@ class App extends React.Component {
   }
 
   emptyClick() {
+    const { currentItem } = this.state;
     this.state.outfitList.push(this.state.currentItem);
     this.setState({ outfitTitle: 'Your Outfit' });
+    axios.post('/cart', { data: currentItem })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   relatedDeleteClick() {
-    delete this.state.itemList[0];
-    this.state.itemList.shift();
+    this.state.itemList.pop();
     this.setState({ itemList: this.state.itemList });
   }
 
   outfitDeleteClick() {
-    this.state.outfitList.shift();
+    this.state.outfitList.pop();
     if (this.state.outfitList.length < 1) {
       this.setState({ outfitTitle: 'Add Item?' });
     }
