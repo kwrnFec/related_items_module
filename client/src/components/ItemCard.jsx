@@ -3,20 +3,11 @@
 /* eslint-disable import/extensions */
 import React from 'react';
 import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
 import Modal from './Modal.jsx';
 
 function ItemCard(props) {
   return (
     <div className="item-card">
-      <Col>
-        <div id="delete" className="delete-field">
-          Remove Item&nbsp;&nbsp;
-          <Card onClick={props.deleteClick} id="delete" className="delete-button" style={{ width: '5rem', height: '5rem' }}>
-            x
-          </Card>
-        </div>
-      </Col>
       <Card style={{ width: '28rem', height: '68rem' }}>
         <Card.Img variant="top" src={props.image} />
         <Card.Body className="card-body">

@@ -83,12 +83,18 @@ class App extends React.Component {
   }
 
   relatedDeleteClick() {
-    this.state.itemList.pop();
+    this.state.itemList.shift();
+    this.state.relatedImages.shift();
     this.setState({ itemList: this.state.itemList });
   }
 
   outfitDeleteClick() {
-    this.state.outfitList.pop();
+    const relatedId = this.state.outfitList[0].id;
+    axios.patch('/cart', { data: relatedId })
+      .then((response) => {
+        console.log(response.data);
+      });
+    this.state.outfitList.shift();
     if (this.state.outfitList.length < 1) {
       this.setState({ outfitTitle: 'Add Item?' });
     }
@@ -114,7 +120,7 @@ class App extends React.Component {
               />
             </div>
           </div>
-          <div>
+          <div className="outfit-plus-title">
             <h1 className="outfit-title">
               &nbsp;&nbsp;&nbsp;
               {this.state.outfitTitle}

@@ -15,6 +15,7 @@ function MyModalWithGrid(props) {
     const dummyObj = props.currentitem;
     const keyCount = Object.keys(dummyObj);
     const featureObj = {};
+
     if (keyCount < 1) {
       return (
         <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
@@ -53,6 +54,7 @@ function MyModalWithGrid(props) {
         </Modal>
       );
     }
+
     for (let i = 0; i < props.currentitem.features.length; i += 1) {
       if (props.currentitem.features[i].value === 'null') {
         props.currentitem.features[i].value = 'No';

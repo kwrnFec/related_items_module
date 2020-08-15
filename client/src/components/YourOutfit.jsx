@@ -8,34 +8,42 @@ import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Carousel from 'react-bootstrap/Carousel';
 import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import ItemCard from './ItemCard.jsx';
 
 const YourOutfit = (props) => {
   if (props.itemList.length > 0) {
     return (
       <div>
-        <Row>
-          <div>
-            <Button id="add-to-outfit-button" variant="dark" block onClick={props.emptyClick}>
-              Add Current Item
-            </Button>
+        <Col className="entire-outfit">
+          <Row>
+            <div>
+              <Button id="add-to-outfit-button" variant="dark" block onClick={props.emptyClick}>
+                Add Current Item
+              </Button>
+            </div>
+            <Container className="container">
+              <Carousel>
+                {props.itemList.map((product) => (
+                  <Carousel.Item>
+                    <ItemCard
+                      currentItem={props.currentItem}
+                      image={props.imageList[0]}
+                      onClick={props.onClick}
+                      item={product}
+                    />
+                  </Carousel.Item>
+                ))}
+              </Carousel>
+            </Container>
+          </Row>
+          <div id="delete" className="delete-field">
+            Remove Item&nbsp;&nbsp;
+            <Card onClick={props.deleteClick} id="delete" className="delete-button" style={{ width: '35px', height: '35px' }}>
+              x
+            </Card>
           </div>
-          <Container className="container">
-            <Carousel>
-              {props.itemList.map((product) => (
-                <Carousel.Item>
-                  <ItemCard
-                    currentItem={props.currentItem}
-                    deleteClick={props.deleteClick}
-                    image={props.imageList[0]}
-                    onClick={props.onClick}
-                    item={product}
-                  />
-                </Carousel.Item>
-              ))}
-            </Carousel>
-          </Container>
-        </Row>
+        </Col>
       </div>
     );
     // })

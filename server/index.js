@@ -23,14 +23,7 @@ const productOptions = {
 };
 
 const oneProductRelationOptions = {
-  url: 'http://18.224.200.47/products/1/related',
-  headers: {
-    'User-Agent': 'request',
-  },
-};
-
-const styleOptions = {
-  url: 'http://18.224.200.47/products/1/styles',
+  url: 'http://18.224.200.47/products/2/related',
   headers: {
     'User-Agent': 'request',
   },
@@ -48,19 +41,18 @@ app.post('/cart', jsonParser, (req, res) => {
     if (err) return err;
     res.send(req.body.data);
     return console.log(Product);
-    // saved!
+  });
+});
+
+app.patch('/cart', jsonParser, (req, res) => {
+  Product.findOneAndDelete({ id: req.body.data }, (err) => {
+    console.log(err);
+    res.send('Deleted!');
   });
 });
 
 app.get('/data', (req, res) => {
   axios.get(productOptions.url)
-    .then((response) => {
-      res.json(response.data);
-    });
-});
-
-app.get('/styles', (req, res) => {
-  axios.get(styleOptions.url)
     .then((response) => {
       res.json(response.data);
     });
