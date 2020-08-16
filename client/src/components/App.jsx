@@ -33,7 +33,9 @@ class App extends React.Component {
     axios.get('/cart')
       .then((response) => {
         this.setState({ outfitList: response.data });
-        console.log(this.state.outfitList);
+        if (this.state.outfitList.length > 0) {
+          this.setState({ outfitTitle: 'Your Outfit' });
+        }
       })
       .catch((err) => {
         console.log(err);

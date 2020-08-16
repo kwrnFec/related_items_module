@@ -37,11 +37,10 @@ const YourOutfit = (props) => {
               </Carousel>
             </Container>
           </Row>
-          <div id="delete" className="delete-field">
-            Remove Item&nbsp;&nbsp;
-            <Card onClick={props.deleteClick} id="delete" className="delete-button" style={{ width: '35px', height: '35px' }}>
-              x
-            </Card>
+          <div>
+            <Button id="remove-from-outfit-button" variant="dark" block onClick={props.deleteClick}>
+              Remove Item
+            </Button>
           </div>
         </Col>
       </div>
