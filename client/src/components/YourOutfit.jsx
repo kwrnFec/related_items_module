@@ -28,7 +28,7 @@ const YourOutfit = (props) => {
                   <Carousel.Item>
                     <ItemCard
                       currentItem={props.currentItem}
-                      image={props.imageList[0]}
+                      image={props.itemList[0].photo}
                       onClick={props.onClick}
                       item={product}
                     />
@@ -49,7 +49,7 @@ const YourOutfit = (props) => {
   }
   return (
     <div className="empty-card">
-      <Card style={{ width: '28rem', height: '47rem' }}>
+      <Card style={{ width: '28rem', height: '59rem' }}>
         <Card.Body>
           <Card.Title className="outfit-card-title">Click here to start a new Outfit!</Card.Title>
           <Card onClick={props.emptyClick} className="add-to-outfit" style={{ width: '15rem', height: '15rem' }}>

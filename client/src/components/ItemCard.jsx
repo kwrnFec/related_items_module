@@ -8,8 +8,8 @@ import Modal from './Modal.jsx';
 function ItemCard(props) {
   return (
     <div className="item-card">
-      <Card style={{ width: '28rem', height: '68rem' }}>
-        <Card.Img variant="top" src={props.image} />
+      <Card style={{ width: '28rem', height: '55rem' }}>
+        <Card.Img className="image" variant="top" src={props.image} />
         <Card.Body className="card-body">
           <Card.Title className="card-title">{props.item.name}</Card.Title>
           <Card.Text className="star-rating">&nbsp;Star Rating Placeholder</Card.Text>

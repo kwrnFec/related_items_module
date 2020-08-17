@@ -29,17 +29,21 @@ transform:scale(0.85);
   padding-left: 400px;
 }
 
+.image {
+  max-height: 500px;
+}
+
 .items-title {
   flex-direction: column;
   text-align: center;
-  padding-left: 125px;
+  padding-left: 150px;
   padding-bottom: 62px;
 }
 
 .outfit-title {
   flex-direction: column;
   text-align: center;
-  padding-left: 505px;
+  padding-left: 515px;
 }
 
 .carousel-control-prev-icon,
@@ -73,6 +77,13 @@ transform:scale(0.85);
   border: solid 1px black;
   background-color: black;
   padding-bottom: 55px;
+  animation-name: example;
+  animation-duration: .5s;
+}
+
+@keyframes example {
+  from {background-color: white;}
+  to {background-color: black;}
 }
 
 .card-title {
@@ -84,6 +95,8 @@ transform:scale(0.85);
   background-color: black;
   color: white;
   overflow-y: scroll;
+  animation-name: example;
+  animation-duration: .5s;
 }
 
 .entire-outfit {
@@ -192,7 +205,6 @@ transform:scale(0.85);
 }
 
 .plus-sign {
-  padding-left: 14px;
   text-align: center;
   font-size: 125px;
 }

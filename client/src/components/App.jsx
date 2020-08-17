@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable no-param-reassign */
 /* eslint-disable guard-for-in */
 /* eslint-disable no-console */
 /* eslint-disable react/no-access-state-in-setstate */
@@ -22,6 +24,7 @@ class App extends React.Component {
       outfitTitle: 'Add Item?',
       currentItemRelations: [],
       relatedImages: [],
+      relatedStyles: [],
       featureList: [],
     };
     this.emptyClick = this.emptyClick.bind(this);
@@ -30,7 +33,36 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/cart')
+    const sortItemFunc = (itemArray) => {
+      for (let i = 0; i < itemArray.length; i += 1) {
+        if (i < itemArray.length - 1) {
+          const currentItem = itemArray[i];
+          const nextItem = itemArray[i + 1];
+          if (currentItem.id > nextItem.id) {
+            itemArray[i] = nextItem;
+            itemArray[i + 1] = currentItem;
+            return sortItemFunc(itemArray);
+          }
+        }
+      }
+      return itemArray;
+    };
+    const sortStyleFunc = (itemArray) => {
+      for (let i = 0; i < itemArray.length; i += 1) {
+        if (i < itemArray.length - 1) {
+          const currentItem = itemArray[i];
+          const nextItem = itemArray[i + 1];
+          if (currentItem.product_id > nextItem.product_id) {
+            itemArray[i] = nextItem;
+            itemArray[i + 1] = currentItem;
+            return sortStyleFunc(itemArray);
+          }
+        }
+      }
+      return itemArray;
+    };
+
+    axios.get('/outfit')
       .then((response) => {
         this.setState({ outfitList: response.data });
         if (this.state.outfitList.length > 0) {
@@ -45,24 +77,34 @@ class App extends React.Component {
       .then((response) => {
         this.setState({ currentItemRelations: response.data });
         for (let i = 0; i < this.state.currentItemRelations.length; i += 1) {
-          axios.get(`http://18.224.200.47/products/${this.state.currentItemRelations[i]}`)
+          axios.get(`http://52.26.193.201:3000/products/${this.state.currentItemRelations[i]}`)
             .then((response2) => {
               this.state.itemList.push(response2.data);
               this.state.featureList.push(response2.data.features);
               this.setState({ itemList: this.state.itemList });
+              sortItemFunc(this.state.itemList);
+            })
+            .catch((error) => {
+              console.log(error);
             });
         }
+
         for (let i = 0; i < this.state.currentItemRelations.length; i += 1) {
-          axios.get(`http://18.224.200.47/products/${this.state.currentItemRelations[i]}/styles`)
+          axios.get(`http://52.26.193.201:3000/products/${this.state.currentItemRelations[i]}/styles`)
             .then((response3) => {
-              if (response3.data.results[0].photos[0].url === null) {
-                this.state.relatedImages.push('https://www.ukmodels.co.uk/wp-content/uploads/2017/11/model-agency.jpg');
+              if (response3.data.results[0].photos[0].thumbnail_url === null) {
+                response3.data.results[0].photos[0].thumbnail_url = 'https://www.ukmodels.co.uk/wp-content/uploads/2017/11/model-agency.jpg';
+                this.state.relatedStyles.push(response3.data);
               } else {
-                this.state.relatedImages.push(response3.data.results[0].photos[0].url);
+                this.state.relatedStyles.push(response3.data);
                 this.setState({
-                  relatedImages: this.state.relatedImages, currentItem: this.state.itemList[0],
+                  relatedStyles: this.state.relatedStyles, currentItem: this.state.itemList[0],
                 });
               }
+              sortStyleFunc(this.state.relatedStyles);
+            })
+            .catch((error) => {
+              console.log(error);
             });
         }
       })
@@ -75,7 +117,7 @@ class App extends React.Component {
     const { currentItem } = this.state;
     this.state.outfitList.push(this.state.currentItem);
     this.setState({ outfitTitle: 'Your Outfit' });
-    axios.post('/cart', { data: currentItem })
+    axios.post('/outfit', { data: currentItem })
       .then((response) => {
         console.log(response);
       })
@@ -92,9 +134,12 @@ class App extends React.Component {
 
   outfitDeleteClick() {
     const relatedId = this.state.outfitList[0].id;
-    axios.patch('/cart', { data: relatedId })
+    axios.patch('/outfit', { data: relatedId })
       .then((response) => {
         console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
       });
     this.state.outfitList.shift();
     if (this.state.outfitList.length < 1) {
@@ -105,14 +150,17 @@ class App extends React.Component {
 
   render() {
     for (let i = 0; i < this.state.itemList.length; i += 1) {
-      this.state.itemList[i].photo = this.state.relatedImages[i];
-      this.state.itemList[i].features = this.state.featureList[i];
+      if (this.state.relatedStyles[i]) {
+        this.state.itemList[i].photo = this.state.relatedStyles[i].results[0].photos[0].thumbnail_url;
+        this.state.itemList[i].features = this.state.featureList[i];
+      }
     }
     return (
       <div className="fullApp">
         <Row>
+          <div className="helloClass">hello</div>
           <div>
-            <h1 className="items-title">&nbsp;&nbsp; Related Items</h1>
+            <h1 id="title" className="items-title">Related Items</h1>
             <div className="related-products">
               <RelatedProducts
                 currentItem={this.state.currentItem}

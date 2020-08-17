@@ -1,6 +1,12 @@
-// import React from 'react';
-// import App from '../client/src/components/App';
+/* eslint-disable import/extensions */
+import React from 'react';
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import App from '../client/src/components/App.jsx';
 
-// import { configure, shallow } from 'enzyme';
-// import Adapter from 'enzyme-adapter-react-16';
-// configure({ adapter: new Adapter() });
+Enzyme.configure({ adapter: new Adapter() });
+
+test('Clever test name 1', () => {
+  const wrapper = Enzyme.shallow(<App />);  // Define our component wrapper
+  expect(wrapper.find('.helloClass').text()).toBe('hello');
+});

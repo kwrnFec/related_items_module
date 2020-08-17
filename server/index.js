@@ -16,27 +16,27 @@ app.get('/', (req, res) => {
 });
 
 const productOptions = {
-  url: 'http://18.224.200.47/products/list/',
+  url: 'http://52.26.193.201:3000/products/list/',
   headers: {
     'User-Agent': 'request',
   },
 };
 
 const oneProductRelationOptions = {
-  url: 'http://18.224.200.47/products/2/related',
+  url: 'http://52.26.193.201:3000/products/1/related',
   headers: {
     'User-Agent': 'request',
   },
 };
 
-app.get('/cart', (req, res) => {
+app.get('/outfit', (req, res) => {
   Product.find({}).exec()
     .then((data) => {
       res.send(data);
     });
 });
 
-app.post('/cart', jsonParser, (req, res) => {
+app.post('/outfit', jsonParser, (req, res) => {
   Product.create(req.body.data, (err) => {
     if (err) return err;
     res.send(req.body.data);
@@ -44,10 +44,12 @@ app.post('/cart', jsonParser, (req, res) => {
   });
 });
 
-app.patch('/cart', jsonParser, (req, res) => {
+app.patch('/outfit', jsonParser, (req, res) => {
   Product.findOneAndDelete({ id: req.body.data }, (err) => {
+    if (err) return err;
     console.log(err);
     res.send('Deleted!');
+    return 'hello';
   });
 });
 
@@ -61,6 +63,7 @@ app.get('/data', (req, res) => {
 app.get('/oneProductRelation', (req, res) => {
   axios.get(oneProductRelationOptions.url)
     .then((response) => {
+      console.log(response.data);
       res.json(response.data);
     });
 });
