@@ -1,10 +1,10 @@
 /* ||||||||||||||||||||||||||||||||||||| Main Modules ||||||||||||||||||||||||||||||||||||| */
 
 .fullApp {
--webkit-transform:scale(0.83);
--moz-transform:scale(0.83);
--ms-transform:scale(0.83);
-transform:scale(0.83);
+-webkit-transform:scale(0.85);
+-moz-transform:scale(0.85);
+-ms-transform:scale(0.85);
+transform:scale(0.85);
 }
 
 .empty-card {
@@ -18,6 +18,10 @@ transform:scale(0.83);
   padding-left: 30px;
 }
 
+.outfit-plus-title {
+  padding-bottom: 100px;
+}
+
 .your-outfit {
   display: flex;
   flex-direction: row;
@@ -25,17 +29,23 @@ transform:scale(0.83);
   padding-left: 400px;
 }
 
+.image {
+  max-height: 500px;
+}
+
 .items-title {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   flex-direction: column;
   text-align: center;
-  padding-left: 125px;
-  padding-bottom: 58px;
+  padding-left: 156px;
+  padding-bottom: 62px;
 }
 
 .outfit-title {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   flex-direction: column;
   text-align: center;
-  padding-left: 500px;
+  padding-left: 508px;
 }
 
 .carousel-control-prev-icon,
@@ -68,6 +78,14 @@ transform:scale(0.83);
 .item-card {
   border: solid 1px black;
   background-color: black;
+  padding-bottom: 55px;
+  animation-name: example;
+  animation-duration: .5s;
+}
+
+@keyframes example {
+  from {background-color: white;}
+  to {background-color: black;}
 }
 
 .card-title {
@@ -79,52 +97,31 @@ transform:scale(0.83);
   background-color: black;
   color: white;
   overflow-y: scroll;
+  animation-name: example;
+  animation-duration: .5s;
+}
+
+.entire-outfit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 #add-to-outfit-button {
-  margin-top: 20px;
+  margin-bottom: 17px;
   margin-left: 105px;
-}
-
-#delete {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: black;
-}
-
-#modal-feature {
-  font-weight: bold;
-}
-
-.delete-field {
-  flex-direction: row;
-  background-color: black;
-  color: white;
-  text-align: center;
-  font-size: 40px;
-}
-
-.delete-button {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-size: 40px;
-  text-align: center;
-  border: solid 1px white;
-  border-radius: 20px;
-  padding-bottom: 8px;
-}
-
-.delete-button:hover {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-size: 28px;
-  text-align: center;
-  border: solid 1px red;
-  border-radius: 100px;
-  padding-bottom: 5px;
+  border: 4px solid black;
 }
 
 #full-modal-body {
   overflow: visible;
+}
+
+#modal-feature {
+  display: flex;
+  font-weight: bold;
+  align-items: center;
 }
 
 #modal {
@@ -134,7 +131,8 @@ transform:scale(0.83);
 }
 
 #modal-button {
-  margin-left: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 #contained-modal-title-vcenter {
@@ -142,11 +140,15 @@ transform:scale(0.83);
 }
 
 .char-row {
-  border: 1px solid black;
+  border: 1px solid rgb(229, 233, 236);
 }
 
 .char-col {
-  border: 1px solid black;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(229, 233, 236);
 }
 
 .outfit-card-title {
@@ -160,7 +162,6 @@ transform:scale(0.83);
 }
 
 .plus-sign {
-  padding-left: 14px;
   text-align: center;
   font-size: 125px;
 }
@@ -170,18 +171,20 @@ transform:scale(0.83);
 }
 
 #contained-modal-title-vcenter {
-  background-color: black;
-  color: white;
+  background-color: rgb(229, 233, 236);
+  color: black;
   padding: 15px;
-  border: solid 1px white;
+  border: solid 1px rgb(199, 206, 212);
   align-items: center;
   text-align: center;
   border-radius: 20%;
 }
 
+
+
 /* ||||||||||||||||||||||||||||||||||||| Scroll Bar ||||||||||||||||||||||||||||||||||||| */
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   -webkit-appearance: none;
   width: 15px;
 }
@@ -190,4 +193,4 @@ transform:scale(0.83);
   border-radius: 10px;
   background-color: rgba(228, 225, 225, 0.5);
   box-shadow: 0 0 1px rgba(255, 255, 255, .5);
-}
+} */

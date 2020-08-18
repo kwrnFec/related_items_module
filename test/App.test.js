@@ -1,6 +1,11 @@
-// import React from 'react';
-// import App from '../client/src/components/App';
+import React from 'react';
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import App from '../client/src/components/App.jsx';
 
-// import { configure, shallow } from 'enzyme';
-// import Adapter from 'enzyme-adapter-react-16';
-// configure({ adapter: new Adapter() });
+Enzyme.configure({ adapter: new Adapter() });
+
+test(`Should contain the title 'Hello, World'`, () => {
+  const wrapper = Enzyme.shallow(<App />);
+  expect(wrapper.find('.hello-class').text()).toBe('hello');
+});
