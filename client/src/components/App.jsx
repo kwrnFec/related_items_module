@@ -189,6 +189,9 @@ class App extends React.Component {
               />
             </div>
           </div>
+          <div className="hello-class">
+            hello
+          </div>
         </Row>
       </div>
     );
