@@ -15,15 +15,8 @@ app.get('/', (req, res) => {
   res.end();
 });
 
-const productOptions = {
-  url: 'http://52.26.193.201:3000/products/list/',
-  headers: {
-    'User-Agent': 'request',
-  },
-};
-
 const oneProductRelationOptions = {
-  url: 'http://52.26.193.201:3000/products/1/related',
+  url: 'http://52.26.193.201:3000/products/6/related',
   headers: {
     'User-Agent': 'request',
   },
@@ -51,13 +44,6 @@ app.patch('/outfit', jsonParser, (req, res) => {
     res.send('Deleted!');
     return 'hello';
   });
-});
-
-app.get('/data', (req, res) => {
-  axios.get(productOptions.url)
-    .then((response) => {
-      res.json(response.data);
-    });
 });
 
 app.get('/oneProductRelation', (req, res) => {

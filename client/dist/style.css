@@ -34,16 +34,18 @@ transform:scale(0.85);
 }
 
 .items-title {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   flex-direction: column;
   text-align: center;
-  padding-left: 150px;
+  padding-left: 156px;
   padding-bottom: 62px;
 }
 
 .outfit-title {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   flex-direction: column;
   text-align: center;
-  padding-left: 515px;
+  padding-left: 508px;
 }
 
 .carousel-control-prev-icon,
@@ -106,56 +108,10 @@ transform:scale(0.85);
   justify-content: center;
 }
 
-#remove-from-outfit-button {
-  margin-top: 17px;
-  margin-bottom: 17px;
-  border: 4px solid black;
-}
-
 #add-to-outfit-button {
   margin-bottom: 17px;
   margin-left: 105px;
   border: 4px solid black;
-}
-
-#delete {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgb(53, 58, 63);
-}
-
-.delete-field {
-  margin-top: 40px;
-  display: flex;
-  flex-direction: row;
-  background-color: rgb(53, 58, 63);
-  border-radius: 50%;
-  border: 4px solid black;
-  color: white;
-  font-size: 20px;
-  width: 210px;
-  height: 65px;
-}
-
-
-.delete-button {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-size: 34px;
-  text-align: center;
-  border: solid 1px white;
-  border-radius: 20px;
-  padding-bottom: 7px;
-  padding-left: 1px;
-}
-
-.delete-button:hover {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-size: 28px;
-  text-align: center;
-  border: solid 1px black;
-  border-radius: 100px;
-  padding-bottom: 5px;
 }
 
 #full-modal-body {
@@ -175,7 +131,8 @@ transform:scale(0.85);
 }
 
 #modal-button {
-  margin-left: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 #contained-modal-title-vcenter {
@@ -222,6 +179,8 @@ transform:scale(0.85);
   text-align: center;
   border-radius: 20%;
 }
+
+
 
 /* ||||||||||||||||||||||||||||||||||||| Scroll Bar ||||||||||||||||||||||||||||||||||||| */
 

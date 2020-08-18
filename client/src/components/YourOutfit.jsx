@@ -31,17 +31,13 @@ const YourOutfit = (props) => {
                       image={props.itemList[0].photo}
                       onClick={props.onClick}
                       item={product}
+                      deleteClick={props.deleteClick}
                     />
                   </Carousel.Item>
                 ))}
               </Carousel>
             </Container>
           </Row>
-          <div>
-            <Button id="remove-from-outfit-button" variant="dark" block onClick={props.deleteClick}>
-              Remove Item
-            </Button>
-          </div>
         </Col>
       </div>
     );
@@ -49,7 +45,7 @@ const YourOutfit = (props) => {
   }
   return (
     <div className="empty-card">
-      <Card style={{ width: '28rem', height: '59rem' }}>
+      <Card style={{ width: '28rem', height: '64rem' }}>
         <Card.Body>
           <Card.Title className="outfit-card-title">Click here to start a new Outfit!</Card.Title>
           <Card onClick={props.emptyClick} className="add-to-outfit" style={{ width: '15rem', height: '15rem' }}>

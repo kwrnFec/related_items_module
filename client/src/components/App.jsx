@@ -30,9 +30,12 @@ class App extends React.Component {
     this.emptyClick = this.emptyClick.bind(this);
     this.relatedDeleteClick = this.relatedDeleteClick.bind(this);
     this.outfitDeleteClick = this.outfitDeleteClick.bind(this);
+    this.outfitGetter = this.outfitGetter.bind(this);
   }
 
   componentDidMount() {
+    this.outfitGetter();
+
     const sortItemFunc = (itemArray) => {
       for (let i = 0; i < itemArray.length; i += 1) {
         if (i < itemArray.length - 1) {
@@ -47,6 +50,7 @@ class App extends React.Component {
       }
       return itemArray;
     };
+
     const sortStyleFunc = (itemArray) => {
       for (let i = 0; i < itemArray.length; i += 1) {
         if (i < itemArray.length - 1) {
@@ -62,19 +66,9 @@ class App extends React.Component {
       return itemArray;
     };
 
-    axios.get('/outfit')
-      .then((response) => {
-        this.setState({ outfitList: response.data });
-        if (this.state.outfitList.length > 0) {
-          this.setState({ outfitTitle: 'Your Outfit' });
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
     axios.get('/oneProductRelation')
       .then((response) => {
+        console.log(response.data);
         this.setState({ currentItemRelations: response.data });
         for (let i = 0; i < this.state.currentItemRelations.length; i += 1) {
           axios.get(`http://52.26.193.201:3000/products/${this.state.currentItemRelations[i]}`)
@@ -126,26 +120,37 @@ class App extends React.Component {
       });
   }
 
+  outfitGetter() {
+    axios.get('/outfit')
+      .then((response) => {
+        this.setState({ outfitList: response.data });
+        if (this.state.outfitList.length > 0) {
+          this.setState({ outfitTitle: 'Your Outfit' });
+        }
+        if (this.state.outfitList.length < 1) {
+          this.setState({ outfitTitle: 'Add Item?' });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   relatedDeleteClick() {
     this.state.itemList.shift();
     this.state.relatedImages.shift();
     this.setState({ itemList: this.state.itemList });
   }
 
-  outfitDeleteClick() {
-    const relatedId = this.state.outfitList[0].id;
-    axios.patch('/outfit', { data: relatedId })
+  outfitDeleteClick(id) {
+    axios.patch('/outfit', { data: id })
       .then((response) => {
         console.log(response.data);
+        this.outfitGetter();
       })
       .catch((error) => {
         console.log(error);
       });
-    this.state.outfitList.shift();
-    if (this.state.outfitList.length < 1) {
-      this.setState({ outfitTitle: 'Add Item?' });
-    }
-    this.setState({ outfitList: this.state.outfitList });
   }
 
   render() {
@@ -158,7 +163,6 @@ class App extends React.Component {
     return (
       <div className="fullApp">
         <Row>
-          <div className="helloClass">hello</div>
           <div>
             <h1 id="title" className="items-title">Related Items</h1>
             <div className="related-products">
