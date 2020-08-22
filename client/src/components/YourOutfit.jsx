@@ -18,8 +18,8 @@ const YourOutfit = (props) => {
     }
     if (props.itemList.length > 0) {
       return (
-        <div>
-          <Col className="entire-outfit">
+        <div className="entire-outfit">
+          <Col>
             <Row>
               <div>
                 <Button id="add-to-outfit-button" variant="dark" block onClick={props.emptyClick}>

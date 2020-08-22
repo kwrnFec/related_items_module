@@ -69,29 +69,31 @@ class App extends React.Component {
     axios.get('/rp/oneProductRelation')
       .then((response) => {
         this.setState({ currentItemRelations: response.data });
-        for (let i = 0; i < this.state.currentItemRelations.length; i += 1) {
-          // axios.get('/rp/relatedItems', {
-          //   data: this.state.currentItemRelations[i],
-          // })
-          //   .then((response2) => {
-          //     this.state.itemList.push(response2.data);
-          //     this.state.featureList.push(response2.data.features);
-          //     this.setState({ itemList: this.state.itemList });
-          //     sortItemFunc(this.state.itemList);
-          //   })
-          //   .catch((error) => {
-          //     console.log(error);
-          //   });
-          axios.get(`http://52.26.193.201:3000/products/${this.state.currentItemRelations[i]}`)
-            .then((response2) => {
-              this.state.itemList.push(response2.data);
-              this.state.featureList.push(response2.data.features);
-              this.setState({ itemList: this.state.itemList });
-              sortItemFunc(this.state.itemList);
-            })
-            .catch((error) => {
-              console.log(error);
-            });
+        if (this.state.currentItemRelations.length > 0) {
+          for (let i = 0; i < this.state.currentItemRelations.length; i += 1) {
+            // axios.get('/rp/relatedItems', {
+            //   data: this.state.currentItemRelations[i],
+            // })
+            //   .then((response2) => {
+            //     this.state.itemList.push(response2.data);
+            //     this.state.featureList.push(response2.data.features);
+            //     this.setState({ itemList: this.state.itemList });
+            //     sortItemFunc(this.state.itemList);
+            //   })
+            //   .catch((error) => {
+            //     console.log(error);
+            //   });
+            axios.get(`http://52.26.193.201:3000/products/${this.state.currentItemRelations[i]}`)
+              .then((response2) => {
+                this.state.itemList.push(response2.data);
+                this.state.featureList.push(response2.data.features);
+                this.setState({ itemList: this.state.itemList });
+                sortItemFunc(this.state.itemList);
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          }
         }
 
         for (let i = 0; i < this.state.currentItemRelations.length; i += 1) {
@@ -119,8 +121,10 @@ class App extends React.Component {
   }
 
   emptyClick() {
+    if (this.state.outfitList === null) {
+      this.state.outfitList = [];
+    }
     this.state.outfitList.push(this.state.currentItem);
-    console.log(this.state.outfitList);
     this.setState({ outfitTitle: 'Your Outfit', outfitList: this.state.outfitList });
     localStorage.setItem('outfitList', JSON.stringify(this.state.outfitList));
   }
