@@ -66,21 +66,34 @@ class App extends React.Component {
       return itemArray;
     };
 
-    axios.get('/oneProductRelation')
+    axios.get('/rp/oneProductRelation')
       .then((response) => {
-        console.log(response.data);
         this.setState({ currentItemRelations: response.data });
-        for (let i = 0; i < this.state.currentItemRelations.length; i += 1) {
-          axios.get(`http://52.26.193.201:3000/products/${this.state.currentItemRelations[i]}`)
-            .then((response2) => {
-              this.state.itemList.push(response2.data);
-              this.state.featureList.push(response2.data.features);
-              this.setState({ itemList: this.state.itemList });
-              sortItemFunc(this.state.itemList);
-            })
-            .catch((error) => {
-              console.log(error);
-            });
+        if (this.state.currentItemRelations.length > 0) {
+          for (let i = 0; i < this.state.currentItemRelations.length; i += 1) {
+            // axios.get('/rp/relatedItems', {
+            //   data: this.state.currentItemRelations[i],
+            // })
+            //   .then((response2) => {
+            //     this.state.itemList.push(response2.data);
+            //     this.state.featureList.push(response2.data.features);
+            //     this.setState({ itemList: this.state.itemList });
+            //     sortItemFunc(this.state.itemList);
+            //   })
+            //   .catch((error) => {
+            //     console.log(error);
+            //   });
+            axios.get(`http://52.26.193.201:3000/products/${this.state.currentItemRelations[i]}`)
+              .then((response2) => {
+                this.state.itemList.push(response2.data);
+                this.state.featureList.push(response2.data.features);
+                this.setState({ itemList: this.state.itemList });
+                sortItemFunc(this.state.itemList);
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          }
         }
 
         for (let i = 0; i < this.state.currentItemRelations.length; i += 1) {
@@ -108,32 +121,28 @@ class App extends React.Component {
   }
 
   emptyClick() {
-    const { currentItem } = this.state;
+    if (this.state.outfitList === null) {
+      this.state.outfitList = [];
+    }
     this.state.outfitList.push(this.state.currentItem);
-    this.setState({ outfitTitle: 'Your Outfit' });
-    axios.post('/outfit', { data: currentItem })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    this.setState({ outfitTitle: 'Your Outfit', outfitList: this.state.outfitList });
+    localStorage.setItem('outfitList', JSON.stringify(this.state.outfitList));
   }
 
   outfitGetter() {
-    axios.get('/outfit')
-      .then((response) => {
-        this.setState({ outfitList: response.data });
-        if (this.state.outfitList.length > 0) {
+    this.setState({ outfitList: JSON.parse(localStorage.getItem('outfitList')) });
+    this.state.outfitList = JSON.parse(localStorage.getItem('outfitList'));
+    if (this.state.outfitList !== null) {
+      if (this.state.outfitList.length > 0) {
+        if (this.state.outfitList[0] !== null) {
           this.setState({ outfitTitle: 'Your Outfit' });
+          localStorage.setItem('outfitList', JSON.stringify(this.state.outfitList));
         }
-        if (this.state.outfitList.length < 1) {
-          this.setState({ outfitTitle: 'Add Item?' });
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      }
+      if (this.state.outfitList.length < 1) {
+        this.setState({ outfitTitle: 'Add Item?' });
+      }
+    }
   }
 
   relatedDeleteClick() {
@@ -143,14 +152,18 @@ class App extends React.Component {
   }
 
   outfitDeleteClick(id) {
-    axios.patch('/outfit', { data: id })
-      .then((response) => {
-        console.log(response.data);
-        this.outfitGetter();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    for (let i = 0; i < this.state.outfitList.length; i += 1) {
+      if (this.state.outfitList[i].id === id) {
+        this.state.outfitList.splice(i, 1);
+        localStorage.setItem('outfitList', JSON.stringify(this.state.outfitList));
+        console.log('localstorage after delete: ', JSON.parse(localStorage.getItem('outfitList')));
+        if (this.state.outfitList.length === 0) {
+          this.setState({ outfitTitle: 'Add Item?' });
+        }
+        this.setState({ outfitList: JSON.parse(localStorage.getItem('outfitList')) });
+        return;
+      }
+    }
   }
 
   render() {
@@ -188,9 +201,6 @@ class App extends React.Component {
                 deleteClick={this.outfitDeleteClick}
               />
             </div>
-          </div>
-          <div className="hello-class">
-            hello
           </div>
         </Row>
       </div>
