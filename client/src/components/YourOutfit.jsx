@@ -12,36 +12,40 @@ import Col from 'react-bootstrap/Col';
 import ItemCard from './ItemCard.jsx';
 
 const YourOutfit = (props) => {
-  if (props.itemList.length > 0) {
-    return (
-      <div>
-        <Col className="entire-outfit">
-          <Row>
-            <div>
-              <Button id="add-to-outfit-button" variant="dark" block onClick={props.emptyClick}>
-                Add Current Item
-              </Button>
-            </div>
-            <Container className="container">
-              <Carousel>
-                {props.itemList.map((product) => (
-                  <Carousel.Item>
-                    <ItemCard
-                      currentItem={props.currentItem}
-                      image={props.itemList[0].photo}
-                      onClick={props.onClick}
-                      item={product}
-                      deleteClick={props.deleteClick}
-                    />
-                  </Carousel.Item>
-                ))}
-              </Carousel>
-            </Container>
-          </Row>
-        </Col>
-      </div>
-    );
-    // })
+  if (props.itemList !== null) {
+    if (props.itemList[0] === null) {
+      props.itemList.shift();
+    }
+    if (props.itemList.length > 0) {
+      return (
+        <div>
+          <Col className="entire-outfit">
+            <Row>
+              <div>
+                <Button id="add-to-outfit-button" variant="dark" block onClick={props.emptyClick}>
+                  Add Current Item
+                </Button>
+              </div>
+              <Container className="container">
+                <Carousel>
+                  {props.itemList.map((product) => (
+                    <Carousel.Item>
+                      <ItemCard
+                        currentItem={props.currentItem}
+                        image={props.itemList[0].photo}
+                        onClick={props.onClick}
+                        item={product}
+                        deleteClick={props.deleteClick}
+                      />
+                    </Carousel.Item>
+                  ))}
+                </Carousel>
+              </Container>
+            </Row>
+          </Col>
+        </div>
+      );
+    }
   }
   return (
     <div className="empty-card">
