@@ -1,6 +1,6 @@
 # Project Name
 
-> Project description
+> Related Items Module
 
 ## Related Projects
 
@@ -14,6 +14,7 @@
 1. [Usage](#Usage)
 1. [Requirements](#requirements)
 1. [Development](#development)
+1. Video: https://youtu.be/xj7kOZeVqQw
 
 ## Usage
 
